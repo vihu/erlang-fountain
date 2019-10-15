@@ -1,0 +1,13 @@
+[package]
+name = "native"
+version = "0.1.0"
+authors = ["Rahul Garg <vihu89@gmail.com>"]
+edition = "2018"
+
+[lib]
+name = "native"
+crate-type = ["dylib"]
+
+[dependencies]
+rustler = ">=0.13.0"
+fountaincode = { git = 'https://github.com/vihu/fountain' }
