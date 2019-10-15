@@ -9,7 +9,6 @@
 
 -spec encode_systematic(Data :: binary(), Chunk :: pos_integer()) -> {ok, reference()} | {error, any()}.
 encode_systematic(Data, Chunk) ->
-    %% Do systematic encode unless specified
     encode_native_systematic(binary:bin_to_list(Data), Chunk).
 
 -spec encode_random(Data :: binary(), Chunk :: pos_integer()) -> {ok, reference()} | {error, any()}.
@@ -24,6 +23,15 @@ decode(EncoderRef, Length, Chunk) ->
         {error, _}=Error ->
             Error
     end.
+
+encode_native_systematic(_, _) ->
+    not_loaded(?LINE).
+
+encode_native_random(_, _) ->
+    not_loaded(?LINE).
+
+decode_native(_, _, _) ->
+    not_loaded(?LINE).
 
 load() ->
     erlang:load_nif(filename:join(priv(), "libnative"), none).
@@ -40,12 +48,3 @@ priv()->
       Path ->
           Path
   end.
-
-encode_native_systematic(_, _) ->
-    not_loaded(?LINE).
-
-encode_native_random(_, _) ->
-    not_loaded(?LINE).
-
-decode_native(_, _, _) ->
-    not_loaded(?LINE).
