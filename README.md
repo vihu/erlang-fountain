@@ -1,6 +1,8 @@
 erlang_fountain
 =====
 
+![Build status](https://github.com/vihu/erlang-fountain/workflows/Erlang%20CI/badge.svg)
+
 Erlang bindings to fountain codes written in rust
 
 Build
