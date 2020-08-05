@@ -10,4 +10,4 @@ crate-type = ["dylib"]
 
 [dependencies]
 rustler = { git = "https://github.com/rusterlium/rustler.git", branch = "master" }
-fountaincode = { git = 'https://github.com/vihu/fountain', branch = "rg/rework"}
+fountaincode = { git = 'https://github.com/vihu/fountain', branch = "master"}
