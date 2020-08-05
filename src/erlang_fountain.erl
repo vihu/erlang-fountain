@@ -1,36 +1,36 @@
 -module(erlang_fountain).
 
 %% API
--export([encode_systematic/2, encode_random/2, decode/3]).
+-export([
+         %% Encoding
+         new_encoder/3,
+         next/1,
+         %% Decoding
+         new_decoder/2,
+         catch_drop/2
+        ]).
 
 %% Native lib support
 -export([load/0]).
 -on_load(load/0).
 
--spec encode_systematic(Data :: binary(), Chunk :: pos_integer()) -> {ok, reference()} | {error, any()}.
-encode_systematic(Data, Chunk) ->
-    encode_native_systematic(binary:bin_to_list(Data), Chunk).
+-type drop_type() :: {seeded, Seed :: pos_integer(), Degree :: pos_integer()} | {edges, Cnt :: [pos_integer()]}.
+-type droplet() :: {DropType :: drop_type(), Data :: binary()}.
 
--spec encode_random(Data :: binary(), Chunk :: pos_integer()) -> {ok, reference()} | {error, any()}.
-encode_random(Data, Chunk) ->
-    encode_native_random(binary:bin_to_list(Data), Chunk).
-
--spec decode(Encoder :: reference(), Length :: pos_integer(), Chunk :: pos_integer()) -> {ok, binary()} | {error, any()}.
-decode(EncoderRef, Length, Chunk) ->
-    case decode_native(EncoderRef, Length, Chunk) of
-        {ok, L} ->
-            {ok, binary:list_to_bin(L)};
-        {error, _}=Error ->
-            Error
-    end.
-
-encode_native_systematic(_, _) ->
+-spec new_encoder(Data :: binary(), Chunk :: pos_integer(), Type :: random | systematic) -> reference().
+new_encoder(_Data, _Chunk, _Type) ->
     not_loaded(?LINE).
 
-encode_native_random(_, _) ->
+-spec next(Encoder :: reference()) -> droplet().
+next(_Encoder) ->
     not_loaded(?LINE).
 
-decode_native(_, _, _) ->
+-spec new_decoder(Len :: pos_integer(), BlockSize :: pos_integer()) -> reference().
+new_decoder(_Len, _BlockSize) ->
+    not_loaded(?LINE).
+
+-spec catch_drop(Decoder :: reference(), Droplet :: droplet()) -> reference().
+catch_drop(_Decoder, _Droplet) ->
     not_loaded(?LINE).
 
 load() ->
