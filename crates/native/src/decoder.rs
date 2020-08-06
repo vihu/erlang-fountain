@@ -65,7 +65,7 @@ fn catch_drop<'a>(
                         }
                     } else if edge_or_seeded[0] == seeded().to_term(env) {
                         // Do seeded stuff
-                        let seed: usize = edge_or_seeded[1].decode().unwrap();
+                        let seed: u64 = edge_or_seeded[1].decode().unwrap();
                         let degree: usize = edge_or_seeded[2].decode().unwrap();
                         let drop_data = tup[2].into_binary().unwrap();
                         let droplet = Droplet::new(DropType::Seeded(seed, degree), drop_data.to_vec());
