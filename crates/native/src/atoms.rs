@@ -7,4 +7,11 @@ rustler::atoms! {
     edges,
     random,
     systematic,
+    tc128,
+    tc256,
+    tc512,
+    tm1280,
+    tm5120,
+    tm6144,
+    tm8192,
 }

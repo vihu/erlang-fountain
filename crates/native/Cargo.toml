@@ -10,4 +10,5 @@ crate-type = ["dylib"]
 
 [dependencies]
 rustler = { git = "https://github.com/rusterlium/rustler.git", branch = "master" }
-fountaincode = { git = 'https://github.com/vihu/fountain', branch = "master"}
+fountaincode = { git = 'https://github.com/refugeesus/fountain.git', rev = "db1f81b14661dd02217d1316f78bd06857868d7b" }
+labrador-ldpc = "1.0.0"

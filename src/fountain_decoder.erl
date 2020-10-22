@@ -1,6 +1,6 @@
 -module(fountain_decoder).
 
--export([new/2, catch_drop/2]).
+-export([new/2, catch_drop/2, catch_drop/3]).
 
 -type stats() :: { CntDroplets :: non_neg_integer(),
                    CntChunks :: non_neg_integer(),
@@ -17,3 +17,9 @@ new(Len, BlockSize) ->
                  Droplet :: erlang_fountain:droplet()) -> catch_result().
 catch_drop(Decoder, Droplet) ->
     erlang_fountain:catch_drop(Decoder, Droplet).
+
+-spec catch_drop(Decoder :: reference(),
+                 Droplet :: erlang_fountain:droplet(),
+                 DecType :: tc128 | tc256 | tc512) -> catch_result().
+catch_drop(Decoder, Droplet, DecType) ->
+    erlang_fountain:catch_drop_ldpc(Decoder, Droplet, DecType).

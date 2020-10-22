@@ -17,9 +17,11 @@ rustler::init!(
     "erlang_fountain",
     [
         encoder::new_encoder,
+        encoder::new_ldpc_encoder,
         encoder::next,
         decoder::new_decoder,
         decoder::catch_drop,
+        decoder::catch_drop_ldpc,
     ],
     load=load
 );
